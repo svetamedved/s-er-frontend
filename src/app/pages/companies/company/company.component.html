@@ -1,0 +1,139 @@
+<nb-card>
+  <nb-card-header>{{mode}} Product</nb-card-header>
+  <nb-card-body>
+    <div [formGroup]="companyForm" class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <input nbInput id="_id" formControlName="_id"
+                 class="form-control" placeholder="ID" hidden>
+          <h3>Company Info</h3>
+          <div class="form-group">
+            <label for="companyName">Company Name</label>
+            <input nbInput id="companyName" formControlName="companyName"
+                   [status]="(companyName?.hasError('minlength') || companyName?.hasError('maxlength')) ? 'danger' : 'primary'"
+                   class="form-control" placeholder="Last Name">
+            <ngx-validation-message label="Product Name"
+                                    [showMinLength]="companyName?.hasError('minlength')"
+                                    [showMaxLength]="companyName?.hasError('maxlength')" minLength=3
+                                    maxLength=20></ngx-validation-message>
+          </div>
+          <div class="form-group">
+            <label for="gln">GLN</label>
+            <input nbInput id="gln" formControlName="gln"
+                   [status]="(gln?.hasError('minlength') || gln?.hasError('maxlength')) ? 'danger' : 'primary'"
+                   class="form-control" placeholder="gln">
+            <ngx-validation-message label="gln"
+                                    [showMinLength]="gln?.hasError('minlength')"
+                                    [showMaxLength]="gln?.hasError('maxlength')" minLength=3
+                                    maxLength=20></ngx-validation-message>
+          </div>
+          <div class="form-group">
+            <label for="sender">Sender</label>
+            <ng-autocomplete
+                    class="ng-autocomplete"
+                    id="sender"
+                    [data]="filteredSenderOptions$ | async"
+                    [searchKeyword]="'companyName'"
+                    [placeHolder]="'sender'"
+                    formControlName="sender"
+                    [itemTemplate]="companyItemTemplate">
+            </ng-autocomplete>
+            <ngx-validation-message label="sender"
+                                    [showMinLength]="sender?.hasError('minlength')"
+                                    [showMaxLength]="sender?.hasError('maxlength')" minLength=3
+                                    maxLength=20></ngx-validation-message>
+          </div>
+          <div class="form-group">
+            <label for="receiver">Receiver</label>
+            <ng-autocomplete
+                    class="ng-autocomplete"
+                    id="receiver"
+                    [data]="filteredReceiverOptions$ | async"
+                    [searchKeyword]="'companyName'"
+                    [placeHolder]="'receiver'"
+                    formControlName="receiver"
+                    [itemTemplate]="companyItemTemplate">
+            </ng-autocomplete>
+            <ngx-validation-message label="receiver"
+                                    [showMinLength]="receiver?.hasError('minlength')"
+                                    [showMaxLength]="receiver?.hasError('maxlength')" minLength=3
+                                    maxLength=20></ngx-validation-message>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <h3>Address</h3>
+          <div class="form-group" formGroupName="address">
+            <label for="addressLine">Address</label>
+            <input nbInput id="addressLine" formControlName="addressLine"
+                   [status]="(addressLine?.hasError('minlength') || addressLine?.hasError('maxlength')) ? 'danger' : 'primary'"
+                   class="form-control" placeholder="Address">
+            <ngx-validation-message label="Address"
+                                    [showMinLength]="addressLine?.hasError('minlength')"
+                                    [showMaxLength]="addressLine?.hasError('maxlength')" minLength=3
+                                    maxLength=20></ngx-validation-message>
+          </div>
+          <div class="form-group" formGroupName="address">
+            <label for="addressLine2">Address 2</label>
+            <input nbInput id="addressLine2" formControlName="addressLine2"
+                   [status]="(addressLine2?.hasError('minlength') || addressLine2?.hasError('maxlength')) ? 'danger' : 'primary'"
+                   class="form-control" placeholder="Address 2">
+            <ngx-validation-message label="Address 2"
+                                    [showMinLength]="addressLine2?.hasError('minlength')"
+                                    [showMaxLength]="addressLine2?.hasError('maxlength')" minLength=3
+                                    maxLength=20></ngx-validation-message>
+          </div>
+          <div class="form-group" formGroupName="address">
+            <label for="city">City</label>
+            <input nbInput id="city" formControlName="city"
+                   [status]="(city?.hasError('minlength') || city?.hasError('maxlength')) ? 'danger' : 'primary'"
+                   class="form-control" placeholder="City">
+            <ngx-validation-message label="City"
+                                    [showMinLength]="city?.hasError('minlength')"
+                                    [showMaxLength]="city?.hasError('maxlength')" minLength=3
+                                    maxLength=20></ngx-validation-message>
+          </div>
+          <div class="form-group" formGroupName="address">
+            <label for="state">State</label>
+            <input nbInput id="state" formControlName="state"
+                   [status]="(state?.hasError('minlength') || state?.hasError('maxlength')) ? 'danger' : 'primary'"
+                   class="form-control" placeholder="State">
+            <ngx-validation-message label="State"
+                                    [showMinLength]="state?.hasError('minlength')"
+                                    [showMaxLength]="state?.hasError('maxlength')" minLength=3
+                                    maxLength=20></ngx-validation-message>
+          </div>
+          <div class="form-group" formGroupName="address">
+            <label for="zip">Zip</label>
+            <input nbInput id="zip" formControlName="zip"
+                   [status]="(zip?.hasError('minlength') || zip?.hasError('maxlength')) ? 'danger' : 'primary'"
+                   class="form-control" placeholder="Zip">
+            <ngx-validation-message label="Zip"
+                                    [showMinLength]="zip?.hasError('minlength')"
+                                    [showMaxLength]="zip?.hasError('maxlength')" minLength=3
+                                    maxLength=20></ngx-validation-message>
+          </div>
+          <div class="form-group" formGroupName="address">
+            <label for="country">Country</label>
+            <input nbInput id="country" formControlName="country"
+                   [status]="(country?.hasError('minlength') || country?.hasError('maxlength')) ? 'danger' : 'primary'"
+                   class="form-control" placeholder="Country">
+            <ngx-validation-message label="Country"
+                                    [showMinLength]="country?.hasError('minlength')"
+                                    [showMaxLength]="country?.hasError('maxlength')" minLength=3
+                                    maxLength=20></ngx-validation-message>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #companyItemTemplate let-company>
+      <a class="text-capitalize" [innerHTML]="company.companyName"></a>
+    </ng-template>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton status="primary" [disabled]="!companyForm.valid" (click)="save()" hero>Submit</button>
+    <button nbButton status="info" (click)="back()" hero>Back</button>
+  </nb-card-footer>
+</nb-card>
+

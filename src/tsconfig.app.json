@@ -1,0 +1,34 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "baseUrl": "./",
+    "paths": {
+      "@angular/*": [
+        "../node_modules/@angular/*"
+      ],
+      "@nebular/*": [
+        "../node_modules/@nebular/*"
+      ],
+      "@core/*": [
+        "app/@core/*"
+      ],
+      "@theme/*": [
+        "app/@theme/*"
+      ]
+    }
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts",
+    "**/*.ecom.ts",
+    "**/*.iot.ts",
+    "**/*.starter.ts",
+    "../node_modules/@nebular/**/*.spec.ts"
+  ],
+  "include": [
+    "../src/*.ts",
+    "../src/**/*.ts",
+    "../node_modules/@nebular/**/*.ts"
+  ]
+}

@@ -1,0 +1,22 @@
+<nb-card>
+    <nb-card-header>Enter total amount of labels</nb-card-header>
+    <nb-card-body [formGroup]="form">
+        <div class="mt-2 mb-3">
+            <input
+                    mask="0*"
+                    formControlName="total" nbInput placeholder="total amount">
+        </div>
+        <div class="mb-2 mt-3">
+            <nb-select formControlName="type" class="d-block" placeholder="Select Type">
+                <nb-option value="carton">Carton</nb-option>
+                <nb-option value="case">Case</nb-option>
+            </nb-select>
+        </div>
+    </nb-card-body>
+    <nb-card-footer class="align-content-between">
+        <div class="text-right">
+            <button (click)="cancel()" nbButton outline status="primary">Cancel</button>
+            <button [disabled]="form.invalid"  (click)="submit()" class="ml-4" nbButton status="primary">Generate</button>
+        </div>
+    </nb-card-footer>
+</nb-card>

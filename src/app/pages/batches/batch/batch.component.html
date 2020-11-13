@@ -1,0 +1,90 @@
+<nb-card>
+  <nb-card-header>{{mode}} Product</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-md-6">
+        <div [formGroup]="batchForm" class="container">
+          <div class="form-group row">
+            <label for="dosageFormType" class="label col-sm-3 col-form-label">Lot Id</label>
+            <div class="col-sm-9">
+              <input nbInput id="dosageFormType" formControlName="lot"
+                     [status]="(lot?.hasError('minlength') || lot?.hasError('maxlength')) ? 'danger' : 'primary'"
+                     class="form-control" placeholder="Lot Id">
+              <ngx-validation-message label="Lot Id"
+                                      [showMinLength]="lot?.hasError('minlength')"
+                                      [showMaxLength]="lot?.hasError('maxlength')" minLength=3
+                                      maxLength=20></ngx-validation-message>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="expDate" class="label col-sm-3 col-form-label">Exp Date</label>
+            <div class="col-sm-9">
+              <input nbInput id="expDate" formControlName="expDate"
+                     [status]="(expDate?.hasError('minlength') || expDate?.hasError('maxlength')) ? 'danger' : 'primary'"
+                     [nbDatepicker]="picker"
+                     class="form-control"
+                     placeholder="Exp Date">
+              <nb-datepicker #picker [min]="min"></nb-datepicker>
+            </div>
+          </div>
+          <div class="form-group product-list row">
+            <label for="productList" class="label col-sm-3 col-form-label">Select Product</label>
+            <div class="col-sm-9">
+              <nb-select id="productList" formControlName="productId">
+                <nb-option *ngFor="let product of products" [value]="product._id  ">{{product.productName}} - {{product.amountPerCase}} per case</nb-option>
+              </nb-select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group row">
+          <button class="btn btn-primary" (click)="openPrintBatchModal()">Print Label(s)</button>
+<!--          <button class="btn btn-primary" (click)="exportToPrintCase()">Print Case Label</button>-->
+<!--          <button class="btn btn-primary" (click)="exportToPrintItem()">Print Item Label</button>-->
+        </div>
+        <div class="row" *ngIf="fileLinks">
+          <h4>Print Files (XLS):</h4>
+          <div class="col-sm-12">
+            <ul>
+              <li *ngFor="let l of fileLinks"><a href="{{l.Location}}">{{l.key}}</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-header><h4>Items</h4></nb-card-header>
+  <nb-card-body>
+    <div *ngIf="batchItems">
+      <div class="col-sm-10">
+        <h4>Items</h4>
+        <div class="form-group row">
+          <table>
+            <thead>
+            <th>2D Barcode</th>
+            <th>Human Readable Top</th>
+            <th>Human Readable Bottom</th>
+            <th>Barcode Top</th>
+            <th>Barcode Bottom</th>
+            </thead>
+            <tr *ngFor="let item of batchItems">
+              <td>{{item.barcodes.barcode2d}}</td>
+              <td>{{item.barcodes.humanReadableTop}}</td>
+              <td>{{item.barcodes.humanReadableBottom}}</td>
+              <td>{{item.barcodes.barcodeTop}}</td>
+              <td>{{item.barcodes.barcodeBottom}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton status="primary" [disabled]="!batchForm.valid" (click)="save()" hero>Submit</button>
+    <button nbButton status="info" (click)="back()" hero>Back</button>
+  </nb-card-footer>
+</nb-card>
+

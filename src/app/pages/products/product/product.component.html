@@ -1,0 +1,86 @@
+<nb-card>
+    <nb-card-header>{{mode}} Product</nb-card-header>
+    <nb-card-body [formGroup]="productForm">
+        <input nbInput id="_id" formControlName="_id"
+               class="form-control" placeholder="ID" hidden>
+        <div class="row">
+            <div class="form-group col-md-3 col-xs-12">
+                <label for="productName">Product Name</label>
+                <input nbInput id="productName" formControlName="productName"
+                       [status]="(productName?.hasError('minlength') || productName?.hasError('maxlength')) ? 'danger' : 'primary'"
+                       class="form-control" placeholder="Product Name">
+                <ngx-validation-message label="Product Name"
+                                        [showMinLength]="productName?.hasError('minlength')"
+                                        [showMaxLength]="productName?.hasError('maxlength')" minLength=3
+                                        maxLength=20></ngx-validation-message>
+            </div>
+            <div class="form-group col-md-3 col-xs-12">
+                <label for="productGTIN">Product GTIN</label>
+                <input nbInput id="productGTIN" formControlName="productGTIN"
+                       [status]="(productGTIN?.hasError('minlength') || productGTIN?.hasError('maxlength')) ? 'danger' : 'primary'"
+                       class="form-control" placeholder="Product GTIN">
+                <ngx-validation-message label="Product GTIN"
+                                        [showMinLength]="productGTIN?.hasError('minlength')"
+                                        [showMaxLength]="productGTIN?.hasError('maxlength')" minLength=3
+                                        maxLength=20></ngx-validation-message>
+            </div>
+            <div class="form-group col-md-3 col-xs-12">
+                <label for="manufacturer">Manufacturer</label>
+                <input nbInput id="manufacturer" formControlName="manufacturer"
+                       [status]="(manufacturer?.hasError('minlength') || manufacturer?.hasError('maxlength')) ? 'danger' : 'primary'"
+                       class="form-control" placeholder="Manufacturer">
+                <ngx-validation-message label="Manufacturer"
+                                        [showMinLength]="manufacturer?.hasError('minlength')"
+                                        [showMaxLength]="manufacturer?.hasError('maxlength')" minLength=3
+                                        maxLength=20></ngx-validation-message>
+            </div>
+            <div class="form-group col-md-3 col-xs-12">
+                <label for="manufacturer">Dosage Form Type</label>
+                <input nbInput id="dosageFormType" formControlName="dosageFormType"
+                       [status]="(dosageFormType?.hasError('minlength') || dosageFormType?.hasError('maxlength')) ? 'danger' : 'primary'"
+                       class="form-control" placeholder="Dosage Form Type">
+                <ngx-validation-message label="Dosage Form Type"
+                                        [showMinLength]="dosageFormType?.hasError('minlength')"
+                                        [showMaxLength]="dosageFormType?.hasError('maxlength')" minLength=3
+                                        maxLength=20></ngx-validation-message>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3 col-xs-12">
+                <label for="strengthDescription">Strength Description</label>
+                <input nbInput id="strengthDescription" formControlName="strengthDescription"
+                       [status]="(strengthDescription?.hasError('minlength') || strengthDescription?.hasError('maxlength')) ? 'danger' : 'primary'"
+                       class="form-control" placeholder="Strength Description">
+                <ngx-validation-message label="Strength Description"
+                                        [showMinLength]="strengthDescription?.hasError('minlength')"
+                                        [showMaxLength]="strengthDescription?.hasError('maxlength')" minLength=3
+                                        maxLength=20></ngx-validation-message>
+            </div>
+            <div class="form-group col-md-3 col-xs-12">
+                <label for="amountPerCase">Amount per case</label>
+                <input nbInput id="amountPerCase" formControlName="amountPerCase"
+                       [status]="(amountPerCase?.hasError('minlength') || amountPerCase?.hasError('maxlength')) ? 'danger' : 'primary'"
+                       class="form-control" placeholder="Strength Description">
+                <ngx-validation-message label="Strength Description"
+                                        [showMinLength]="amountPerCase?.hasError('minlength')"
+                                        [showMaxLength]="amountPerCase?.hasError('maxlength')" minLength=3
+                                        maxLength=20></ngx-validation-message>
+            </div>
+            <div class="form-group col-md-3 col-xs-12">
+                <label for="netContentDescription">Net Content Description</label>
+                <input nbInput id="netContentDescription" formControlName="netContentDescription"
+                       [status]="(netContentDescription?.hasError('minlength') || netContentDescription?.hasError('maxlength')) ? 'danger' : 'primary'"
+                       class="form-control" placeholder="Net Content Description">
+                <ngx-validation-message label="Net Content Description"
+                                        [showMinLength]="netContentDescription?.hasError('minlength')"
+                                        [showMaxLength]="netContentDescription?.hasError('maxlength')" minLength=3
+                                        maxLength=20></ngx-validation-message>
+            </div>
+        </div>
+    </nb-card-body>
+    <nb-card-footer>
+        <button nbButton status="primary" [disabled]="!productForm.valid" (click)="save()" hero>Submit</button>
+        <button nbButton status="info" (click)="back()" hero>Back</button>
+    </nb-card-footer>
+</nb-card>
+

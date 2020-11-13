@@ -1,0 +1,49 @@
+<nb-card>
+  <nb-card-header>Export EPCIS - Tracelink</nb-card-header>
+  <nb-card-body>
+    <div [formGroup]="epcisForm" class="container">
+      <div class="form-group row">
+        <label for="po" class="label col-sm-3 col-form-label">Insert Purchase Order</label>
+        <div class="col-sm-9">
+          <input nbInput formControlName="po" id="po">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="productList" class="label col-sm-3 col-form-label">Select Product</label>
+        <div class="col-sm-9">
+          <nb-select [(selected)]="productSelected" id="productList">
+            <nb-option *ngFor="let product of products" [value]="product._id  ">{{product.productName}} - {{product.amountPerCase}} per case</nb-option>
+          </nb-select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="receiver" class="label col-sm-3 col-form-label">Select Receiving Company</label>
+        <div class="col-sm-9">
+          <nb-select [(selected)]="receiverSelected" id="receiver" formControlName="receiver">
+            <nb-option *ngFor="let option of receivingCompanies" [value]="option._id">{{option.companyName}} </nb-option>
+          </nb-select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="file" class="label col-sm-3 col-form-label">Upload XLS File</label>
+        <div class="col-sm-9">
+          <input nbInput type="file" name="file" id="file" (change)="setFile($event.target.files)">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-sm-3 col-sm-9">
+          <button type="submit" nbButton status="primary" (click)="uploadFile()">Export file</button>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<nb-card *ngIf="fileLinks">
+  <nb-card-header>Report Links</nb-card-header>
+  <nb-card-body>
+    <ul>
+      <li *ngFor="let link of fileLinks"><a href="{{link.Location}}" target="_blank">{{link.key}}</a></li>
+    </ul>
+  </nb-card-body>
+</nb-card>

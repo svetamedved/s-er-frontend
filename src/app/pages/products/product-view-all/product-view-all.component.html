@@ -1,0 +1,14 @@
+<nb-card>
+  <nb-card-header>Products</nb-card-header>
+  <nb-card-body>
+    <a href="pages/products/add"><button class="btn btn-primary">Add Product</button></a>
+    <ng2-smart-table class="example-smart-table"
+                     [settings]="settings"
+                     [source]="productList"
+                     (edit)="onEditClick($event)"
+                     (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+  <nb-card-footer></nb-card-footer>
+</nb-card>
+

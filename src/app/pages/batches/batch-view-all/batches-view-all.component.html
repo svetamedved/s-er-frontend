@@ -1,0 +1,14 @@
+<nb-card>
+  <nb-card-header>Batches</nb-card-header>
+  <nb-card-body>
+    <a routerLink="/pages/batches/add"><button class="btn btn-primary">Add Batch</button></a>
+    <ng2-smart-table class="example-smart-table"
+                     [settings]="settings"
+                     [source]="batchList"
+                     (edit)="onEditClick($event)"
+                     (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+  <nb-card-footer></nb-card-footer>
+</nb-card>
+
